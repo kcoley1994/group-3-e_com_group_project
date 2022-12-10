@@ -17,30 +17,26 @@
             </div>
             <!-- lastname input -->
             <div class="form-outline mb-4">
-                <input type="email" id="form1Example13" class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example13">Last Name</label>
+              {{form.last_name(class="form-control form-control-lg", placeholder="Last Name")}}
             </div>
             <!-- username input -->
             <div class="form-outline mb-4">
-                <input type="email" id="form1Example13" class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example13">Username</label>
+              {{form.username(class="form-control form-control-lg", placeholder="Username")}}
             </div>
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <input type="email" id="form1Example13" class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example13">Email address</label>
+              {{form.email(class="form-control form-control-lg", placeholder="Email")}}
             </div>
             
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form1Example23" class="form-control form-control-lg" />
-              <label class="form-label" for="form1Example23">Password</label>
+              {{form.password(class="form-control form-control-lg", placeholder="Password")}}
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <input type="password" id="form1Example23" class="form-control form-control-lg" />
-                <label class="form-label" for="form1Example23">Confirm Password</label>
+              {{form.password(class="form-control form-control-lg", placeholder="Confirm Password")}}
+                
               </div>
   
             <div class="d-flex justify-content-around align-items-center mb-4">
@@ -48,8 +44,9 @@
               
             
   
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-danger btn-lg  " style="">Sign in</button>
+            <!-- Signup button -->
+            {{form.sign_up(class="btn btn-danger btn-lg", value= "Signup")}}
+            
   
           </form>
         </div>
