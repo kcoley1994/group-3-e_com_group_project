@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from app.auth.forms import UserCreationForm, UserLoginForm
-# from app.models import User
+
+from app.auth.forms import UserCreationForm
+from app.models import User
 
 
 auth =Blueprint('auth', __name__, template_folder='auth_templates')
@@ -16,13 +17,14 @@ def signup():
             email = form.email.data
             password = form.password.data
 
-            flash('Sign up Complete', 'success')
+            print(first_name, last_name, username, email, password)
             user = User(first_name, last_name, username, email, password)
             
             user.save_to_db()
+            flash('Sign up Complete', 'success')
             return redirect(url_for('auth.login'))
 
-    return render_template('signup.html',form=form)
+    return render_template('signup.html', form=form)
 
 @auth.route('/login')
 def login():
