@@ -1,12 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
-# from flask_login import UserMixin
-# from werkzeug.security import generate_password_hash
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash
 
 
 db = SQLAlchemy()
 
 # create models based off our ERD
-class User(db.Model):
+class User(db.Model, UserMixin):
         id = db.Column(db.Integer, primary_key=True)
         first_name = db.Column(db.String(50), nullable=False)
         last_name = db.Column(db.String(50), nullable=False)
@@ -20,7 +20,7 @@ class User(db.Model):
             self.last_name = last_name
             self.username = username
             self.email = email
-            self.password = password
+            self.password = generate_password_hash(password)
             
         def save_to_db(self):
             db.session.add(self)
