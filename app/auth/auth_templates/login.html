@@ -1,34 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> login page</h1>
-<section class="vh-100">
-    <div class="container py-5 h-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
-            <div class="col-md-8 col-lg-7 col-xl-6">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                class="img-fluid" alt="Phone image">
-            </div>
-            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form method ="POST">
-
-                    {{form.hidden_tag()}}
-                    <!-- username input -->
-                    <div class="form-outline mb-4">
-                        {{form.username(class="form-control form-control-lg", placeholder="Username")}}
-                    </div>
-        
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        {{form.password(class="form-control form-control-lg", placeholder="Password")}}
-                    </div>
-        
-                    <!-- Login button -->
-                    <div class="d-flex justify-content-around align-items-center mb-4">
-                        {{form.login(class="btn btn-danger btn-lg", value= "Login")}}
-                    </div>
+<section class="vh-100 bg-image"
+    style="background-image: url(https://cf.ltkcdn.net/christmas/images/orig/230698-1920x1080-dancing-christmas-trees-wide.jpg);">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Login</h2>
+  
+                <form method="POST">
+  
+                  {{ form.hidden_tag() }}
+  
+                  <div class="form-outline mb-4">
+                    {{ form.username(id="form3Example1cg", class='form-control form-control-lg', placeholder='Username') }}
+                  </div>
+  
+                  <div class="form-outline mb-4">
+                    {{ form.password(id="form3Example4cg", class="form-control form-control-lg", placeholder='Password')}}
+                  </div>
+  
+                  <div class="d-flex justify-content-center">
+                    {{ form.login(class="btn btn-danger btn-block btn-lg", value='Login')}}
+                  </div>
+  
                 </form>
+  
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 {% endblock %}
