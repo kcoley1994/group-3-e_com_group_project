@@ -16,8 +16,3 @@ def view_post():
     return render_template('products.html', posts =posts)
 
 
-# @christmas.route('//<int:post_id>')
-# def view_post():
-#     post = Product.query.all()
-
-#     return render_template('')

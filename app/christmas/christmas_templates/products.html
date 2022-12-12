@@ -47,7 +47,7 @@
               <!-- Default input -->
               <label for="quantity"> Qtn:</label>
               <input type="number"  id="quantity" name="quantity" min="1" max="4" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <a class="btn btn-primary btn-md my-0 p" type="submit" href="/cart">Add to cart
+              <a class="btn btn-primary btn-md my-0 p" type="submit" href="{{url_for('cart.my_cart',product_id=post.id)}}">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </a>
 
