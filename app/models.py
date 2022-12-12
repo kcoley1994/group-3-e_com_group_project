@@ -5,24 +5,9 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-# create models based off our ERD
-# class Cart(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = (db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False))
-#     product_id =(db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False))
-
-#     def __init__(self, user_id, product_id):
-#         self.user_id = user_id
-#         self.product_id = product_id
-
-
-#     def save_to_db(self):
-#             db.session.add(self)
-#             db.session.commit()
-
-cart = db.Table('cart',
-    db.Column('user_id', db.Integer, db.ForeignKey('User.id')),
-    db.Column('product_id', db.Integer, db.ForeignKey('Product.id'))
+association_table = db.Table('association',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
 )
 
 class User(db.Model, UserMixin):
@@ -32,7 +17,11 @@ class User(db.Model, UserMixin):
         username = db.Column(db.String(50), nullable=False, unique=True)
         email = db.Column(db.String(50), nullable=False, unique=True)
         password = db.Column(db.String(250), nullable=False)
-        cart =db.relationship('Product',secondary=cart, backref='customer', lazy=True)
+        children = db.relationship('Product',
+            secondary = association_table,
+            backref=db.backref('association_table', lazy = 'dynamic'),
+            lazy='dynamic'
+            )
 
         def __init__(self, first_name, last_name, username, email, password):
             self.first_name = first_name
@@ -57,7 +46,6 @@ class Product(db.Model):
     price = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String, nullable=False)
-    # cart =db.relationship('Cart',secondary=cart, backref='item', lazy=True)
 
     def __init__(self, name, img_url, price, quantity, description):
         self.name = name
