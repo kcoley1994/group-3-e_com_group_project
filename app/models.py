@@ -41,7 +41,21 @@ class Product(db.Model):
         self.price=price
         self.quantity=quantity
         self.description=description
+    
 
+    def save_to_db(self):
+            db.session.add(self)
+            db.session.commit()
+
+    def to_dict(self, ):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "img_url": self.img_url,
+            "price": self.price,
+            "quantity": self.quantity,
+            "description": self.description,
+        }
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = (db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False))
