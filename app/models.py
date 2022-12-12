@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
             db.session.commit()
 
         def add_to_cart(self, product):
-            self.cart.append(product)
+            self.children.append(product)
             db.session.commit()
 
 
