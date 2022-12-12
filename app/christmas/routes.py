@@ -6,15 +6,17 @@ from app.models import Product
 
 christmas = Blueprint('christmas', __name__, template_folder='christmas_templates')
 
-@christmas.route('/post/create', methods= ['GET','POST'])
+@christmas.route('/post')
 @login_required
-def create_post():
-    form = Productform
+def view_post():
+    posts = Product.query.all()
+    
+   
 
-    return render_template('products.html')
+    return render_template('products.html', posts =posts)
 
 
-# @christmas.route('/posts')
+# @christmas.route('//<int:post_id>')
 # def view_post():
 #     post = Product.query.all()
 
