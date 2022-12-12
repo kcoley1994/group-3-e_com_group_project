@@ -11,7 +11,7 @@ def my_cart(product_id):
     product = Product.query.get(product_id)
     current_user.add_to_cart(product)
 
-    return render_template('cart.html')
+    return render_template('cart.html', product = product)
 
 
 @cart.route('/check')

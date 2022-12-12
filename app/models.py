@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-association_table = db.Table('association',
+cart_table = db.Table('cart',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('product_id', db.Integer, db.ForeignKey('product.id'))
 )
@@ -18,8 +18,8 @@ class User(db.Model, UserMixin):
         email = db.Column(db.String(50), nullable=False, unique=True)
         password = db.Column(db.String(250), nullable=False)
         children = db.relationship('Product',
-            secondary = association_table,
-            backref=db.backref('association_table', lazy = 'dynamic'),
+            secondary = cart_table,
+            backref=db.backref('cart_table', lazy = 'dynamic'),
             lazy='dynamic'
             )
 
